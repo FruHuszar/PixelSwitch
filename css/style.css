@@ -1,0 +1,245 @@
+.app-header h1 {
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+
+.color-panel h2 {
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #6b7280;
+  margin-bottom: 0.75rem;
+}
+
+.color-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.color-item {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.5rem 0.6rem;
+  border-radius: 8px;
+  background: #fff;
+  border: 2px solid transparent;
+  cursor: pointer;
+  transition: border-color 0.15s ease;
+}
+
+.color-item:hover {
+  border-color: #c7cbd4;
+}
+
+.color-item.selected {
+  border-color: #2563eb;
+}
+
+.color-swatch {
+  width: 22px;
+  height: 22px;
+  border-radius: 5px;
+  border: 1px solid rgba(0,0,0,0.15);
+  flex-shrink: 0;
+  padding: 0;
+}
+
+.checkerboard {
+  background-image:
+    linear-gradient(45deg, #c7cbd4 25%, transparent 25%),
+    linear-gradient(-45deg, #c7cbd4 25%, transparent 25%),
+    linear-gradient(45deg, transparent 75%, #c7cbd4 75%),
+    linear-gradient(-45deg, transparent 75%, #c7cbd4 75%);
+  background-color: #fff;
+}
+
+.color-swatch.transparent-swatch {
+  background-size: 8px 8px;
+  background-position: 0 0, 0 4px, 4px -4px, -4px 0px;
+}
+
+.color-hex-input {
+  font-family: monospace;
+  font-size: 0.85rem;
+  width: 6.5rem;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  background: transparent;
+  padding: 0.15rem 0.3rem;
+}
+
+.color-hex-input:hover,
+.color-hex-input:focus {
+  border-color: #c7cbd4;
+  background: #fff;
+  outline: none;
+}
+
+.color-count {
+  margin-left: auto;
+  font-size: 0.8rem;
+  color: #6b7280;
+}
+
+.drop-zone {
+  border: 2px dashed #c7cbd4;
+  border-radius: 12px;
+  background: #fff;
+  cursor: pointer;
+  text-align: center;
+}
+
+.drop-zone.drag-over {
+  border-color: #2563eb;
+  background: #eef2ff;
+}
+
+#dropZoneText {
+  color: #6b7280;
+}
+
+.pixel-canvas {
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+  border-radius: 6px;
+  touch-action: none;
+  background-size: 16px 16px;
+  background-position: 0 0, 0 8px, 8px -8px, -8px 0px;
+}
+
+.canvas-viewport {
+  cursor: grab;
+}
+
+.canvas-viewport:active {
+  cursor: grabbing;
+}
+
+.tool-btn {
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  border: 1px solid #c7cbd4;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #374151;
+  flex-shrink: 0;
+}
+
+.tool-btn svg {
+  width: 19px;
+  height: 19px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.tool-btn:hover {
+  background: #eef2ff;
+  border-color: #2563eb;
+}
+
+.tool-btn.active {
+  background: #2563eb;
+  border-color: #2563eb;
+  color: #fff;
+}
+
+.tool-btn.info-btn {
+  font-weight: 700;
+  font-size: 1.05rem;
+  color: #2563eb;
+  border-color: #2563eb;
+}
+
+.actions button {
+  padding: 0.5rem 1.1rem;
+  border-radius: 8px;
+  border: none;
+  background: #2563eb;
+  color: #fff;
+  font-weight: 600;
+}
+
+.actions button:disabled {
+  background: #c7cbd4;
+  cursor: not-allowed;
+}
+
+#clearBtn {
+  background: #ef4444;
+}
+
+#clearBtn:disabled {
+  background: #c7cbd4;
+}
+
+.color-list.disabled {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.info-panel {
+  background: #fff;
+  border-radius: 12px;
+  padding: 1rem 1.25rem 1.25rem;
+  align-self: start;
+  max-height: calc(100vh - 6rem);
+  overflow-y: auto;
+}
+
+.info-panel-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+  position: sticky;
+  top: 0;
+  background: #fff;
+  padding-bottom: 0.5rem;
+}
+
+.info-panel-header h2 {
+  font-size: 0.95rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #6b7280;
+}
+
+.info-panel-header button {
+  background: none;
+  border: none;
+  font-size: 1.4rem;
+  line-height: 1;
+  color: #6b7280;
+  padding: 0.1rem 0.35rem;
+  border-radius: 6px;
+}
+
+.info-panel-header button:hover {
+  background: #f4f5f7;
+  color: #1f2430;
+}
+
+.info-panel-body h3 {
+  font-size: 0.85rem;
+  margin-top: 0.9rem;
+  margin-bottom: 0.25rem;
+  color: #1f2430;
+}
+
+.info-panel-body h3:first-child {
+  margin-top: 0;
+}
+
+.info-panel-body p {
+  font-size: 0.82rem;
+  color: #4b5563;
+  line-height: 1.45;
+}
