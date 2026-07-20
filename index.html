@@ -22,72 +22,105 @@
         <section class="canvas-panel">
           <div class="toolbar">
             <div class="tool-group">
-              <button
-                id="tool-pen"
-                type="button"
-                class="tool-btn active"
-                data-tool="pen"
-                aria-label="Pen tool"
-              >
-                <svg viewBox="0 0 24 24">
-                  <path d="M3 21l3.5-1 11-11-2.5-2.5-11 11L3 21z" />
-                  <path d="M14.5 5.5L17 3l4 4-2.5 2.5" />
-                </svg>
-              </button>
-              <button
-                id="tool-strict"
-                type="button"
-                class="tool-btn"
-                data-tool="strict"
-                aria-label="Strict swap tool"
-              >
-                <svg viewBox="0 0 24 24">
-                  <rect x="5" y="11" width="14" height="9" rx="2" />
-                  <path d="M8 11V7a4 4 0 0 1 8 0v4" />
-                </svg>
-              </button>
-              <button
-                id="tool-bucket"
-                type="button"
-                class="tool-btn"
-                data-tool="bucket"
-                aria-label="Bucket fill tool"
-              >
-                <svg viewBox="0 0 24 24">
-                  <path d="M3 12l8-8 9 9-8 8-9-9z" />
-                  <path d="M11 4l7 7" />
-                  <path
-                    d="M4.5 13.5S3 15.5 3 17a3 3 0 0 0 6 0c0-1.5-1.5-3.5-1.5-3.5"
-                  />
-                  <path d="M18 20h3" />
-                </svg>
-              </button>
+              <div class="tool">
+                <button
+                  id="tool-pen"
+                  type="button"
+                  class="tool-btn active"
+                  data-tool="pen"
+                  aria-label="Pen tool"
+                >
+                  <svg viewBox="0 0 24 24">
+                    <path d="M3 21l3.5-1 11-11-2.5-2.5-11 11L3 21z" />
+                    <path d="M14.5 5.5L17 3l4 4-2.5 2.5" />
+                  </svg>
+                </button>
+                <span class="tool-cap">Swap</span>
+              </div>
+              <div class="tool">
+                <button
+                  id="tool-strict"
+                  type="button"
+                  class="tool-btn"
+                  data-tool="strict"
+                  aria-label="Strict swap tool"
+                >
+                  <svg viewBox="0 0 24 24">
+                    <rect x="5" y="11" width="14" height="9" rx="2" />
+                    <path d="M8 11V7a4 4 0 0 1 8 0v4" />
+                  </svg>
+                </button>
+                <span class="tool-cap">Lock</span>
+              </div>
+              <div class="tool">
+                <button
+                  id="tool-bucket"
+                  type="button"
+                  class="tool-btn"
+                  data-tool="bucket"
+                  aria-label="Bucket fill tool"
+                >
+                  <svg viewBox="0 0 24 24">
+                    <path d="M3 12l8-8 9 9-8 8-9-9z" />
+                    <path d="M11 4l7 7" />
+                    <path
+                      d="M4.5 13.5S3 15.5 3 17a3 3 0 0 0 6 0c0-1.5-1.5-3.5-1.5-3.5"
+                    />
+                    <path d="M18 20h3" />
+                  </svg>
+                </button>
+                <span class="tool-cap">Fill</span>
+              </div>
             </div>
             <div class="tool-group">
-              <button
-                id="zoomOutBtn"
-                type="button"
-                class="tool-btn"
-                aria-label="Zoom out"
-              >
-                <svg viewBox="0 0 24 24">
-                  <circle cx="11" cy="11" r="7" />
-                  <path d="M8 11h6" />
-                  <path d="M21 21l-4.35-4.35" />
-                </svg>
-              </button>
-              <button
-                id="zoomInBtn"
-                type="button"
-                class="tool-btn"
-                aria-label="Zoom in"
-              >
-                <svg viewBox="0 0 24 24">
-                  <circle cx="11" cy="11" r="7" />
-                  <path d="M11 8v6M8 11h6" />
-                  <path d="M21 21l-4.35-4.35" />
-                </svg>
-              </button>
+              <div class="tool">
+                <button
+                  id="zoomOutBtn"
+                  type="button"
+                  class="tool-btn"
+                  aria-label="Zoom out"
+                >
+                  <svg viewBox="0 0 24 24">
+                    <circle cx="11" cy="11" r="7" />
+                    <path d="M8 11h6" />
+                    <path d="M21 21l-4.35-4.35" />
+                  </svg>
+                </button>
+                <span class="tool-cap">Zoom out</span>
+              </div>
+              <div class="tool">
+                <button
+                  id="zoomInBtn"
+                  type="button"
+                  class="tool-btn"
+                  aria-label="Zoom in"
+                >
+                  <svg viewBox="0 0 24 24">
+                    <circle cx="11" cy="11" r="7" />
+                    <path d="M11 8v6M8 11h6" />
+                    <path d="M21 21l-4.35-4.35" />
+                  </svg>
+                </button>
+                <span class="tool-cap">Zoom in</span>
+              </div>
+            </div>
+            <div class="tool-group">
+              <div class="tool tool-generate">
+                <button
+                  id="generateBtn"
+                  type="button"
+                  class="tool-btn"
+                  aria-label="Generate pattern"
+                  disabled
+                >
+                  <svg viewBox="0 0 24 24">
+                    <path d="M14 3l1.6 3.9L19.5 8.5 15.6 10 14 14l-1.6-4L8.5 8.5l3.9-1.6L14 3z" />
+                    <path d="M5.5 13.5l.8 2 2 .8-2 .8-.8 2-.8-2-2-.8 2-.8.8-2z" />
+                  </svg>
+                </button>
+                <span class="tool-cap">Patterns</span>
+                <div id="patternMenu" class="pattern-menu" hidden></div>
+              </div>
             </div>
             <button
               id="infoOpenBtn"
@@ -169,6 +202,18 @@
               canvas. The two colors will trade places in bulk. If one color has
               fewer pixels than the other, only that maximum amount will trade
               places, leaving the rest unchanged.
+            </p>
+
+            <h3>Patterns (Generate)</h3>
+            <p>
+              Click the sparkle button to open the pattern menu, then pick a
+              style to rearrange your jewels into a ready-to-solve "before"
+              image. The count of every color stays exactly the same and
+              transparent pixels never move, so the result is always solvable.
+              Choose <strong>Gradient</strong> for smooth color rings,
+              <strong>Polka dots</strong> for scattered discs,
+              <strong>Flower</strong> for a blooming center, or
+              <strong>Diamonds</strong> for a lattice.
             </p>
 
             <h3>Zoom</h3>

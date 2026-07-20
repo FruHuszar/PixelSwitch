@@ -7,6 +7,8 @@ import ColorListRenderer from './ColorListRenderer.js';
 import PixelSwapService from './PixelSwapService.js';
 import PngExporter from './PngExporter.js';
 import PanZoomController from './PanZoomController.js';
+import PatternGenerator from './PatternGenerator.js';
+import { createDefaultPatternRegistry } from './Patterns.js';
 
 class App {
   constructor() {
@@ -16,6 +18,8 @@ class App {
     this.storageService = new StorageService();
     this.pixelSwapService = new PixelSwapService();
     this.pngExporter = new PngExporter();
+    this.patternGenerator = new PatternGenerator();
+    this.patternRegistry = createDefaultPatternRegistry();
 
     this.canvas = document.getElementById('pixelCanvas');
     this.canvasViewport = document.getElementById('canvasViewport');
@@ -36,6 +40,8 @@ class App {
     this.toolButtons = [...document.querySelectorAll('.tool-btn[data-tool]')];
     this.zoomInBtn = document.getElementById('zoomInBtn');
     this.zoomOutBtn = document.getElementById('zoomOutBtn');
+    this.generateBtn = document.getElementById('generateBtn');
+    this.patternMenu = document.getElementById('patternMenu');
     this.infoPanel = document.getElementById('infoPanel');
     this.infoOpenBtn = document.getElementById('infoOpenBtn');
     this.infoCloseBtn = document.getElementById('infoCloseBtn');
@@ -45,6 +51,7 @@ class App {
     this.tool = 'pen';
     this.pendingPixel = null;
 
+    this.buildPatternMenu();
     this.bindEvents();
     this.restore();
     this.setInfoOpen(true);
@@ -78,6 +85,10 @@ class App {
     });
     this.zoomInBtn.addEventListener('click', () => this.panZoom.zoomBy(0.5));
     this.zoomOutBtn.addEventListener('click', () => this.panZoom.zoomBy(-0.5));
+    this.generateBtn.addEventListener('click', () => this.togglePatternMenu());
+    document.addEventListener('click', e => {
+      if (!e.target.closest('.tool-generate')) this.closePatternMenu();
+    });
     this.infoOpenBtn.addEventListener('click', () => this.setInfoOpen(true));
     this.infoCloseBtn.addEventListener('click', () => this.setInfoOpen(false));
   }
@@ -124,6 +135,7 @@ class App {
     this.colorListRenderer.render(stats);
     this.downloadBtn.disabled = false;
     this.clearBtn.disabled = false;
+    this.generateBtn.disabled = false;
   }
 
   handleCanvasTap(evt) {
@@ -155,10 +167,42 @@ class App {
       return;
     }
 
-    // pen tool: swap one clicked pixel with a random pixel of the selected color
     if (!this.selectedHex) return;
     const swapped = this.pixelSwapService.swap(this.pixelData, this.selectedHex, x, y);
     if (swapped) {
+      this.canvasRenderer.render(this.pixelData, this.pendingPixel);
+      this.storageService.save(this.pixelData);
+    }
+  }
+
+  buildPatternMenu() {
+    for (const pattern of this.patternRegistry.all) {
+      const option = document.createElement('button');
+      option.type = 'button';
+      option.className = 'pattern-option';
+      option.textContent = pattern.name;
+      option.addEventListener('click', () => {
+        this.generatePattern(pattern.name);
+        this.closePatternMenu();
+      });
+      this.patternMenu.appendChild(option);
+    }
+  }
+
+  togglePatternMenu() {
+    if (this.generateBtn.disabled) return;
+    this.patternMenu.hidden = !this.patternMenu.hidden;
+  }
+
+  closePatternMenu() {
+    this.patternMenu.hidden = true;
+  }
+
+  generatePattern(name) {
+    if (!this.pixelData) return;
+    const pattern = this.patternRegistry.get(name);
+    const changed = this.patternGenerator.generate(this.pixelData, pattern);
+    if (changed) {
       this.canvasRenderer.render(this.pixelData, this.pendingPixel);
       this.storageService.save(this.pixelData);
     }
@@ -189,6 +233,8 @@ class App {
     this.colorListRenderer.reset();
     this.downloadBtn.disabled = true;
     this.clearBtn.disabled = true;
+    this.generateBtn.disabled = true;
+    this.closePatternMenu();
     this.fileInput.value = '';
   }
 }
