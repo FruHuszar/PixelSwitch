@@ -1,6 +1,6 @@
 # Pixel Switch
 
-A simple web-based tool designed for pixel artists to manipulate, swap, and adjust color palettes without breaking the balance of their artwork. Built purely with HTML, CSS, and vanilla JavaScript.
+A simple web-based tool designed for pixel artists to manipulate, swap, and adjust color palettes without breaking the balance of their artwork. Built purely with HTML, CSS, and JavaScript.
 
 - Find pixels that are 1-2 shades off from your palette and fix instantly.
 - Merge close shades into one
